@@ -1,3 +1,4 @@
+
 pipeline{
     agent any
     tools {
@@ -5,7 +6,7 @@ pipeline{
     }
         
     stages{
-        stage('SCM'){
+        stage('git checkout'){
             steps{
             git 'https://github.com/Hemanthj42/spring-petclinic-test.git'
             }
@@ -32,6 +33,12 @@ pipeline{
                 }
                 
                 sh "docker push hemanthj42/petclinictest:${BUILD_NUMBER} "
+            }
+        }
+        
+        stage('copying artifacts'){
+            steps{
+              ansiblePlaybook credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'ansible', playbook: 'ansible-deploy-test.yml'
             }
         }
     }
