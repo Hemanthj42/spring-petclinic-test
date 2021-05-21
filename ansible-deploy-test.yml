@@ -1,0 +1,15 @@
+---
+-host: test
+ user: root
+ tasks:
+   - name: Start the container
+       docker_container:
+        name: testcicd
+        image: "hemanthj42/petclinic:"
+        state: started
+        published_ports:
+          - 0.0.0.0:8080:8080
+   - name: copy artifacts
+      copy:
+       src: target/*.war
+       dest: /mnt/artifacts
