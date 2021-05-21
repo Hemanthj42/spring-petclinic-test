@@ -20,7 +20,7 @@ pipeline{
         
         stage('Docker Build'){
             steps{
-                sh "docker build . -t hemanthj42/petclinictest:${BUILD_NUMBER} "
+                sh "docker build . -t hemanthj42/petclinictest:${JOB_NAME}.${BUILD_NUMBER} "
             }
         }
         
@@ -32,7 +32,7 @@ pipeline{
                     sh "docker login -u hemanthj42 -p ${dockerhub}"
                 }
                 
-                sh "docker push hemanthj42/petclinictest:${BUILD_NUMBER} "
+                sh "docker push hemanthj42/petclinictest:${JOB_NAME}.${BUILD_NUMBER} "
             }
         }
         
