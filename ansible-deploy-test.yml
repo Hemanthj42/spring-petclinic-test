@@ -9,5 +9,5 @@
          mode: "u=rwx,g=rwx,o=rwx"
    -  name: copying artifacts to desired location
       copy:
-         src: /target/spring-petclinic-2.4.5.jar
+         src: target/spring-petclinic-2.4.5.jar
          dest: /mnt/artifacts/
