@@ -1,15 +1,13 @@
 ---
--host: test
- user: root
- tasks:
-   - name: Start the container
-       docker_container:
-        name: testcicd
-        image: "hemanthj42/petclinic:"
-        state: started
-        published_ports:
-          - 0.0.0.0:8080:8080
-   - name: copy artifacts
+- hosts: test
+  user: root
+  tasks:
+   -  name: creating required directory
+      file:
+         path: /mnt/artifacts
+         state: directory
+         mode: "u=rwx,g=rwx,o=rwx"
+   -  name: copying artifacts to desired location
       copy:
-       src: target/*.war
-       dest: /mnt/artifacts
+         src: spring-petclinic-2.4.5.jar
+         dest: /mnt/artifacts/
