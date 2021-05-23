@@ -6,15 +6,9 @@ pipeline{
     }
         
     stages{
-        stage('git checkout'){
-            steps{
-            git 'https://github.com/Hemanthj42/spring-petclinic-test.git'
-            }
-        }
-        
         stage('Maven Build'){
             steps{
-                sh "./mvnw clean package"
+                sh "mvn clean package"
             }
         }
         
