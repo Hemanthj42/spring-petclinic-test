@@ -32,7 +32,7 @@ pipeline{
                     sh "docker login -u hemanthj42 -p ${docker}"
                 }
                 
-                sh "docker push hemanthj42/petclinictest:${JOB_NAME}.${BUILD_NUMBER} "
+                sh "docker push hemanthj42/petclinicspring:${JOB_NAME}.${BUILD_NUMBER} "
             }
         }
         
