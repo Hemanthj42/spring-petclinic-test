@@ -40,5 +40,6 @@ pipeline{
             steps{
                ansiblePlaybook become: true, credentialsId: 'ans', installation: 'ansible', playbook: 'ansible-deploy-test.yml'        
             }
-    }
+        }       
+       }
 }
