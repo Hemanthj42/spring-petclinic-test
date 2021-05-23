@@ -20,7 +20,7 @@ pipeline{
         
         stage('Docker Build'){
             steps{
-                sh "docker build . -t hemanthj42/petclinictest:${JOB_NAME}.${BUILD_NUMBER} "
+                sh "docker build . -t hemanthj42/petclinicspring:${JOB_NAME}.${BUILD_NUMBER} "
             }
         }
         
