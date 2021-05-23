@@ -38,8 +38,7 @@ pipeline{
         
         stage('copying artifacts'){
             steps{
-               ansiblePlaybook become: true, credentialsId: 'ans', installation: 'ansible', playbook: 'ansible-deploy-test.yml'        
-            }
+              ansiblePlaybook become: true, credentialsId: 'ans', disableHostKeyChecking: true, installation: 'ansible', playbook: 'ansible-deploy-test.yml'            }
         }       
-       }
+    }
 }
