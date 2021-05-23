@@ -27,9 +27,9 @@ pipeline{
         
         stage('DockerHub Push'){
             steps{
-                withCredentials([string(credentialsId: 'dockerpass', variable: 'dockerhub')]) {
+                withCredentials([string(credentialsId: 'dockerhemant', variable: 'docker')]) {
  
-                    sh "docker login -u hemanthj42 -p ${dockerhub}"
+                    sh "docker login -u hemanthj42 -p ${docker}"
                 }
                 
                 sh "docker push hemanthj42/petclinictest:${JOB_NAME}.${BUILD_NUMBER} "
@@ -38,8 +38,7 @@ pipeline{
         
         stage('copying artifacts'){
             steps{
-              ansiblePlaybook credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'ansible', playbook: 'ansible-deploy-test.yml'
-            }
+               ansiblePlaybook become: true, credentialsId: 'ans', disableHostKeyChecking: true, installation: 'ansible', playbook: 'ansible-deploy-test.yml', sudo: true, sudoUser: 'ec2-user'            }
         }
     }
 }
